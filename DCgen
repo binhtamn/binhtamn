@@ -1,0 +1,61 @@
+let variables = [];
+
+function addVariable() {
+    const varName = document.getElementById('varName').value.trim();
+    const varType = document.getElementById('varType').value.trim();
+    const variableList = document.getElementById('variableList');
+
+    if (!varName || !varType) {
+        alert('Please enter both variable name and type.');
+        return;
+    }
+
+    // Add the variable to the list
+    variables.push({ name: varName, type: varType });
+
+    // Clear the input fields
+    document.getElementById('varName').value = '';
+    document.getElementById('varType').value = '';
+
+    // Update the displayed list of variables
+    const listItem = document.createElement('li');
+    listItem.textContent = `${varName}: ${varType}`;
+    variableList.appendChild(listItem);
+}
+
+function generateDataContract() {
+    const className = document.getElementById('className').value.trim();
+    const outputElement = document.getElementById('output');
+
+    if (!className || variables.length === 0) {
+        outputElement.textContent = 'Please enter the class name and add at least one variable.';
+        return;
+    }
+
+    let result = '[DataContractAttribute]\n';
+    result += `public class ${className}\n{\n`;
+
+    // Declare private variables
+    variables.forEach(variable => {
+        result += `    private ${variable.type} ${variable.name};\n`;
+    });
+
+    result += '\n';
+
+    // Generate parm methods
+    variables.forEach(variable => {
+        result += `    [DataMember('${variable.name}')]\n`;
+        result += `    public ${variable.type} parm${variable.name}(${variable.type} _${variable.name} = ${variable.name})\n`;
+        result += '    {\n';
+        result += `        if (!prmIsDefault(_${variable.name}))\n`;
+        result += '        {\n';
+        result += `            ${variable.name} = _${variable.name};\n`;
+        result += '        }\n';
+        result += `        return ${variable.name};\n`;
+        result += '    }\n\n';
+    });
+
+    result += '}';
+
+    outputElement.textContent = result;
+}
