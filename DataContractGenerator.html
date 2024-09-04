@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X++ DataContract Generator</title>
+</head>
+<body>
+    <h1>X++ DataContract Generator</h1>
+    
+    <div>
+        <label for="className">Class Name:</label>
+        <input type="text" id="className" placeholder="Enter class name">
+    </div>
+    
+    <div>
+        <label for="varName">Variable Name:</label>
+        <input type="text" id="varName" placeholder="Enter variable name">
+    </div>
+    
+    <div>
+        <label for="varType">Variable Type:</label>
+        <input type="text" id="varType" placeholder="Enter variable type">
+    </div>
+
+    <button onclick="addVariable()">Add Variable</button>
+
+    <h2>Variables:</h2>
+    <ul id="variableList"></ul>
+
+    <button onclick="generateDataContract()">Generate DataContract</button>
+
+    <h2>Generated X++ DataContract:</h2>
+    <pre id="output"></pre>
+
+    <script src="app.js"></script>
+</body>
+</html>
