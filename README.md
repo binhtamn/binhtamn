@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @binhtamn
-- 👀 I’m interested in AX
-- 🌱 I’m currently learning AX
-- 💞️ I’m looking to collaborate on AX
+- 👀 I’m interested in AX/D365
+- 🌱 I’m currently learning AX/D365
+- 💞️ I’m looking to collaborate on AX/D365
 
 
 <!---
